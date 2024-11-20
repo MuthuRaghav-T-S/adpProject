@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>To Do List</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f7fc;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .main {
+            background-color: white;
+            border-radius: 8px;
+            padding: 30px;
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        .input-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        input {
+            width: 75%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            margin-left: 10px;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        li {
+            background-color: #f9f9f9;
+            padding: 12px;
+            border: 1px solid #ddd;
+            margin: 10px ;
+            border-radius: 5px;
+            font-size: 18px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .removebtn {
+            background-color: #ff4d4d;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            font-size: 14px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <h1>To Do List</h1>
+        <div class="input-container">
+            <input type="text" placeholder="Add a task" id="task">
+            <button onclick="addFunction()">ADD</button>
+        </div>
+        <ul id="listtask"></ul>
+    </div>
+
+    <script>
+        function addFunction() {
+            let taskInput = document.getElementById("task");
+            let inputText = taskInput.value.trim();
+            if (inputText === "") {
+                return false; 
+            }
+            let listItem = document.createElement('li');
+            listItem.textContent = inputText;
+            let removeBtn = document.createElement("button");
+            removeBtn.textContent = "Remove";
+            removeBtn.classList.add("removebtn");
+            removeBtn.onclick = function () {
+                listItem.remove();
+            };
+            listItem.append(removeBtn);
+            document.getElementById("listtask").append(listItem);
+            taskInput.value = "";
+        }
+    </script>
+</body>
+</html>
